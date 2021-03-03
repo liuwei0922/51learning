@@ -3,7 +3,9 @@
 #include <nixietube.h>
 unsigned char code LedBuff[] = {0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff};
 unsigned int msec =0;
-unsigned int sec=0;
+unsigned char sec=0;
+unsigned char min=4;
+unsigned char hours=17;
 unsigned char i =0;
 void main(){
 	EA=1;
@@ -15,6 +17,14 @@ void main(){
 			sec++;
 			msec=0;
 		}
+		if(sec>=60){
+			min++;
+			sec=0;
+		}
+		if(min>=60){
+			hours++;
+			min=0;
+		}
 	}
 }
 void Interruputtime0() interrupt  1 {
@@ -22,20 +32,20 @@ void Interruputtime0() interrupt  1 {
 		TL0 = 0x67;
 		msec++;
 		//ÁÁµÆ
-		if(sec<10){
-			tube(0);
-			lighting(sec);
+		switch (i){
+		case 1:
+			tube(i); lighting(sec/10);i++;break;
+		case 0:
+			tube(i); lighting(sec%10);i++;break;
+		case 3: 
+			tube(i); lighting(min/10);i++;break;
+		case 2:
+			tube(i); lighting(min%10);i++;break;
+		case 5:
+			tube(i); lighting(hours/10);i=0;break;
+		case 4:
+			tube(i); lighting(hours%10);i++;break;
+
 		}
-		else if(sec>=10&&sec<100){
-			if(i==1){
-				tube(i);
-				lighting(sec/10);
-				i=0	;
-			}
-			else{
-				tube(i);
-				lighting(sec%10);
-				i=1;
-			}
-		}
+
 }
