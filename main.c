@@ -12,7 +12,7 @@ void main(){
 	ET0=1;
 	delay(1);
 	while(1){
-		// ±º‰≈–∂œ
+		//time translate
 		if(msec>=1000){
 			sec++;
 			msec=0;
@@ -31,7 +31,7 @@ void Interruputtime0() interrupt  1 {
 		TH0 = 0xFC;
 		TL0 = 0x67;
 		msec++;
-		//¡¡µ∆
+		//lighting
 		switch (i){
 		case 1:
 			tube(i); lighting(sec/10);i++;break;
