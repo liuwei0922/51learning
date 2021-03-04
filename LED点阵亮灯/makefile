@@ -5,9 +5,9 @@ main.hex:main.ihx
 	packihx main.ihx > main.hex 
 
 main.ihx:main.rel hc595.rel 
-	sdcc main.rel 
+	sdcc main.rel hc595.rel 
 
-main.rel:main.c 
+main.rel:main.c hc595.h 
 	sdcc -c main.c
 hc595.rel: hc595.c
 	sdcc -c hc595.c 
