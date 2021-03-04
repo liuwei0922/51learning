@@ -1,7 +1,7 @@
-#include <reg52.h>
-#include <delay.h>
-#include <nixietube.h>
-unsigned char code LedBuff[] = {0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff};
+#include <8051.h>
+#include "delay.h"
+#include "nixietube.h"
+unsigned char __code LedBuff[] = {0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff};
 unsigned int msec =0;
 unsigned char sec=0;
 unsigned char min=4;
@@ -27,7 +27,7 @@ void main(){
 		}
 	}
 }
-void Interruputtime0() interrupt  1 {
+void Interruputtime0() __interrupt  1 {
 		TH0 = 0xFC;
 		TL0 = 0x67;
 		msec++;
