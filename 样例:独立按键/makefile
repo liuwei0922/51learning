@@ -1,6 +1,6 @@
 vpath %.c ../src
 vpath %.h ../include
-headers = nixietube.h delay.h hc595.h 
+headers = nixietube.h  hc595.h 
 mustclean = *.rel *.lst *.rst *.rsm *.sym *.asm *.map *.mem *.lk *.ihx
 targetname =key_control.hex
 CC = sdcc 
