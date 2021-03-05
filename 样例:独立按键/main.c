@@ -1,7 +1,6 @@
 #include <8051.h>
 #include "../include/nixietube.h"
 #include "../include/hc595.h"
-#include "../include/delay.h"
 #define K1 RXD
 #define K2 TXD
 #define ADD P3_2
