@@ -1,8 +1,9 @@
 mustclean = *.rel *.lst *.rst *.rsm *.sym *.asm *.map *.mem *.lk *.ihx
-all:main.hex
+romote = ../.hex/LedsToLight.hex 
+all:LedsToLight.hex
 
-main.hex:main.ihx
-	packihx main.ihx > main.hex 
+LedsToLight.hex:main.ihx
+	packihx main.ihx > $(romote)
 
 main.ihx:main.rel hc595.rel 
 	sdcc main.rel hc595.rel 
