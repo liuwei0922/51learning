@@ -2,7 +2,9 @@
 #include "hc595.h"
 #define LED P0
 #define switchs P1_0
-unsigned char __code LEDBUFF[]={0xE7,0xC3,0x81,0x00,0x00,0x00,0x99,0xFF};
+unsigned char __code LEDBUFF[]={0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFC,0xFC,0xFC,0xFC,0xFC,0xFC,0x00,0x00,
+0xFF,0x00,0xE7,0xE7,0xE7,0xE7,0xE7,0x00,0xFF,0x3C,0x3C,0x3C,0x3C,0x3C,0x00,0x00,
+0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF};
 
 
 void main(){
@@ -29,6 +31,11 @@ void main(){
 void InterruputTime0() __interrupt 1 {
     static unsigned char  times = 0 ;
     static unsigned char hcvar = 0b00000001;
+    // 图片索引
+    static unsigned char index = 0;
+    // 时间索引，250ms刷新一次图片，index+1
+    static unsigned char secs = 0;
+
     TH0 = 0xFC;
 	TL0 = 0x67;
     // 不要闪烁
@@ -37,11 +44,24 @@ void InterruputTime0() __interrupt 1 {
     HC595(hcvar); 
     hcvar <<= 1; 
     // 横坐标亮
-    LED = LEDBUFF[times];
+    LED = LEDBUFF[(index+times)];
     times ++ ;
     if(times >=8){
         times = 0; 
         hcvar = 1;
     }
+    secs ++;
+
+    if (secs>=250)
+    {
+        secs = 0;
+        index++;
+        if (index >=32)
+        {
+            index = 0;
+        }
+        
+    }
+    
            
 }
