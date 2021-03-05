@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "nixietube.h": "c",
+        "hc595.h": "c"
+    }
+}
