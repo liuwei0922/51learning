@@ -58,7 +58,7 @@ void main(){
     //HC595(0b10000000);
 }
 void InterruputTime0() __interrupt 1 {
-    static unsigned char  times = 0 ;
+    static unsigned char  次数 = 0 ;
     static unsigned char hcvar = 0b00000001;
     // 图片索引
     static unsigned char index = 0;
@@ -73,10 +73,10 @@ void InterruputTime0() __interrupt 1 {
     HC595(hcvar); 
     hcvar <<= 1; 
     // 横坐标亮
-    LED = LEDBUFF[index][times];
-    times ++ ;
-    if(times >=8){
-        times = 0; 
+    LED = LEDBUFF[index][次数];
+    次数 ++ ;
+    if(次数 >=8){
+        次数 = 0; 
         hcvar = 1;
     }
     secs ++;
