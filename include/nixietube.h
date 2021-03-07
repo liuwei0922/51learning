@@ -7,4 +7,5 @@
 
 extern void tube(unsigned char led);
 extern void lighting(unsigned char times);
+void number_for_show(unsigned long number,unsigned char number_to_out[]);
 #endif

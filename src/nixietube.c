@@ -5,7 +5,8 @@
 
 void tube (unsigned char led) {
 	 P0 =  ~ 0xFF;
-	 switch (led){
+	 switch (led)
+	 {
 		case 0:
 		 	ADD0 = 0;
 			ADD1 = 0;
@@ -50,7 +51,31 @@ void tube (unsigned char led) {
 		}
 }
 void lighting(unsigned char num){
-  	unsigned char __code  Led[]={0xC0, 0xF9, 0xA4, 0xB0, 0x99, 0x92, 0x82, 0xF8,0x80,0x90};
+	P0 =  ~ 0xFF;
+  	unsigned char __code  Led[]={0xC0, 0xF9, 0xA4, 0xB0, 0x99, 0x92, 0x82, 0xF8,0x80,0x90,0xff};
 	P0 = ~ Led[num];
 }
-
+void number_for_show(unsigned long number,unsigned char number_to_out[]){
+    signed char i;
+    unsigned char num_buff[6];
+    for ( i = 0; i < 7 ; i++)
+    {
+        num_buff[i] = number%10;
+        number /= 10;
+    }
+    for ( i = 6; i>=1; i--)
+    {
+        if (num_buff[i] == 0)
+        {
+            number_to_out[i]=10;
+        }
+        else{
+            break;
+        }
+        
+    }
+    for ( ; i >= 0; i--)
+    {
+        number_to_out[i]= num_buff[i];
+    }
+}
