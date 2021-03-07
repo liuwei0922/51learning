@@ -1,6 +1,6 @@
 vpath %.c ../src
 vpath %.h ../include
-headers = 
+headers = nixietube.h  keysdriver.h
 mustclean = *.rel *.lst *.rst *.rsm *.sym *.asm *.map *.mem *.lk *.ihx
 targetname =calculator.hex
 CC = sdcc 
