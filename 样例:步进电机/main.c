@@ -8,7 +8,7 @@ void delay(unsigned int i){
 void main (){
     moto = 0x0;
     while (1){
-        moto = 0Xa;
+        moto = 0Xf;
         delay(2000);
     }
     
