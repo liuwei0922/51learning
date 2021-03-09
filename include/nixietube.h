@@ -6,6 +6,6 @@
 
 
 extern void tube(unsigned char led);
-extern void lighting(unsigned char times);
-void number_for_show(unsigned long number,unsigned char number_to_out[]);
+extern void lighting(unsigned char num);
+extern void number_for_show(unsigned long number,unsigned char number_to_out[],unsigned char length);
 #endif
