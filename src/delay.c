@@ -32,3 +32,17 @@ void config_time_0(unsigned char ms){
 	ET0 = 1;
 	TR0 = 1;
 }
+void config_time_1(unsigned char ms){
+	unsigned long tmp;
+	tmp = 11059200 / 12; //计时器频率
+	tmp = (tmp*ms)/1000; //计时器计数值
+	tmp = 65536 - tmp; //计时器重载值
+	T0RH = (char)(tmp>>8);//高位 
+	T0RL = (char)(tmp);//低位
+	TMOD &= 0X0f;//定时模式
+	TMOD |= 0X10;
+	TH1 = T0RH;
+	TL1 = T0RL;
+	ET1 = 1;
+	TR1 = 1;
+}
