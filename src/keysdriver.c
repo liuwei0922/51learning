@@ -1,8 +1,9 @@
 #include <8051.h>
-#include "../include/nixietube.h"
+#include "../include/keysaction.h"
 // 按位操作
 #define set_bit(var, n) (var |= (1<<n))
 #define get_bit(var, n) (var & (1<<n))
+
 // 键盘键码
 unsigned char __code keys_code[4][4]={
     {97,98,99,107},{100,101,102,109},
@@ -12,115 +13,7 @@ unsigned char keys_sta[4][4]={
     {1,1,1,1},{1,1,1,1},
     {1,1,1,1},{1,1,1,1}
 };
-unsigned long result = 0;
-unsigned long var = 0;
-unsigned char flag = 0;
-void keys_action(unsigned char key_code,unsigned char number_to_out[] ){
-    // 数字
-    if (key_code >= 96&&key_code <= 105)
-    {
-        if (flag == 108)
-        {
-            
-        }
-        
-        var=(var*10)+key_code-96; 
-        number_for_show(var,number_to_out);  
-    }
-    // 加
-    if (key_code == 107)
-    {
-        if (flag == 0)
-        {
-            result += var;
-            var = 0;
-            number_for_show(result,number_to_out);
-            flag = 0;
-        }
-        else{
-            goto equal;
-        }
-        
-    }
-    // 减
-    if (key_code == 109)
-    { 
-        // 连减
-        if (flag == 109)
-        {
-            result -= var;
-            var = 0;
-            number_for_show(result,number_to_out);
-        }
-        else{
-            result =var;
-            var = 0;
-            flag = 109;//减法标记
-        }
-     }
-    //乘
-    if (key_code == 106)
-    {
-        // 连乘
-        if (flag ==106)
-        {
-            result *= var;
-            var = 0;
-            number_for_show(result,number_to_out);
-        }
-        else{
-            result =var;
-            var = 0;
-            flag = 106;//乘法标记
-        }
-    }
-    //除
-    if (key_code == 111)
-    {
-        // 连除
-        if (flag == 111)
-        {
-            result /= var;
-            var = 0;
-            number_for_show(result,number_to_out);
-        }
-        else{
-            result =var;
-            var = 0;
-            flag = 111;//除法标记
-        }
-    }
-    
-    // 等于
-    if (key_code == 108)
-    {   
-        equal:
-        switch (flag)//上一次的按键
-        {
-        case 109:
-            result = result -var;
-            number_for_show(result,number_to_out);
-            var = 0;
-            break;
-        case 106: 
-            result = result *var;
-            number_for_show(result,number_to_out);
-            var = 0;
-            break;
-        case 111:
-            result = result /var;
-            number_for_show(result,number_to_out);
-            var = 0;
-            break;
-        default:
-            result += var;
-            var = 0;
-            number_for_show(result,number_to_out);
-            break;
-        }
-        flag = 108;
-    }  
-}
+
 void keys_driver(unsigned char  number_to_out[]){
     unsigned char i,j;
     //static unsigned char k=0;
