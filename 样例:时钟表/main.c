@@ -10,8 +10,8 @@ unsigned char hour = 0;
 void main (){
     
     EA = 1;
-    //ET0 = 0;
-    config_time_0(1);
+    ET0 = 0;
+    config_time_1(1);
     while (1)
     {
         if (ms>=1000)
@@ -36,14 +36,14 @@ void main (){
         number_for_show(min,&number_to_out[2],2);
     }
 }
-void interrupt_time_0() __interrupt 1{
+void interrupt_time_1() __interrupt 3{
     static unsigned char index = 0;
    
     // 关闭定时中断
-    ET0 = 0 ;
+    ET1 = 0 ;
     // 恢复定时
-    TH0 = T0RH;
-    TL0 = T0RL;
+    TH1 = T0RH;
+    TL1 = T0RL;
     // 中断次数改变
     ms++;
     
@@ -55,9 +55,10 @@ void interrupt_time_0() __interrupt 1{
     index++;
     index &= 0x07;
     // 打开定时中断
-    ET0 = 1 ;
+    ET1 = 1 ;
 }
 void keys_action(unsigned char key_code,unsigned char num_to_out[]){
+    ET1 = 0;
     switch (key_code)
     {
     case 107:
@@ -75,4 +76,5 @@ void keys_action(unsigned char key_code,unsigned char num_to_out[]){
     default:
         break;
     }
+    ET1= 1;
 }
