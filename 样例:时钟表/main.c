@@ -10,20 +10,21 @@ unsigned char hour = 0;
 void main (){
     
     EA = 1;
+    //ET0 = 0;
     config_time_0(1);
     while (1)
     {
-        if (ms>1000)
+        if (ms>=1000)
         {
             ms = 0;
             sec++;
         }
-        if (sec>60)
+        if (sec>=60)
         {
             sec = 0;
             min ++;
         }
-        if (min >60)
+        if (min >=60)
         {
             min = 0;
             hour ++;
