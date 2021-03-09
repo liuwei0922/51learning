@@ -4,8 +4,51 @@
 #define ADD2  P2_4
 
 void tube (unsigned char led) {
-	P0 =  ~ 0xFF;
-	P2 &= 0xf1|(led<<1);
+	 P0 =  ~ 0xFF;
+	 switch (led)
+	 {
+		case 0:
+		 	ADD0 = 0;
+			ADD1 = 0;
+			ADD2 = 0;
+			break;
+		case 1: 
+			ADD0 = 1;
+			ADD1 = 0;
+			ADD2 = 0;
+			break;
+		case 2: 
+			ADD0=0;	
+			ADD1=1;	
+			ADD2=0;
+			break;
+		case 3: 
+			ADD0=1;
+			ADD1=1;
+			ADD2=0;	
+			break;
+		case 4: 
+			ADD0=0;
+			ADD1=0;	
+			ADD2=1;
+			break;
+		case 5: 
+			ADD0=1;
+			ADD1=0;
+			ADD2=1;
+			break;
+		case 6: 			
+			ADD0=0;	
+			ADD1=1;	
+			ADD2=1;
+			break;
+		case 7:
+			ADD0=1;	
+			ADD1=1;
+			ADD2=1;
+			break;
+		default: break;
+		}
 }
 void lighting(unsigned char num){
 	P0 =  ~ 0xFF;
