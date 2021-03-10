@@ -13,7 +13,8 @@ unsigned char keys_sta[4][4]={
     {1,1,1,1},{1,1,1,1},
     {1,1,1,1},{1,1,1,1}
 };
-
+unsigned int keys_down_time = 0;
+unsigned int keys_time = 1000;
 void keys_driver(unsigned char  number_to_out[]){
     unsigned char i,j;
     //static unsigned char k=0;
@@ -33,6 +34,14 @@ void keys_driver(unsigned char  number_to_out[]){
                     keys_action(keys_code[i][j],number_to_out);
                 }
                 keys_backup[i][j]= keys_sta[i][j];
+                if (keys_down_time >= keys_time)
+                {
+                    keys_action(keys_code[i][j],number_to_out);
+                    keys_time+=200;
+                }else{
+                    keys_time = 1000;
+                }
+                
             }
             
         }
@@ -56,7 +65,6 @@ void keys_scan(){
     for ( key_in_index = 0; key_in_index <4;key_in_index++)
     {
         key_in_bit = get_bit(P1,key_in_index);
-        
         keys_buff[key_out_index][((~key_in_index)& 0x03)]=(keys_buff[key_out_index][((~key_in_index)& 0x03)]<<1)|key_in_bit;
     }
     // 判断按键状态
@@ -65,6 +73,7 @@ void keys_scan(){
         if ( (keys_buff[key_out_index][key_in_index] & 0x0f) == 0x00)
         {
             keys_sta[key_out_index][key_in_index]= 0;
+            keys_down_time+=4;
         }
         if ((keys_buff[key_out_index][key_in_index] & 0x0f) == 0x0f)
         {
