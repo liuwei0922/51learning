@@ -29,6 +29,11 @@ void main (){
             min = 0;
             hour ++;
         }
+        if (hour >= 24)
+        {
+            hour = 0;
+        }
+        
         keys_driver(number_to_out);
         // 改变数组中的值，显示相应的值       
         number_for_show(sec ,&number_to_out[0],2);
@@ -58,7 +63,6 @@ void interrupt_time_1() __interrupt 3{
     ET1 = 1 ;
 }
 void keys_action(unsigned char key_code,unsigned char num_to_out[]){
-    ET1 = 0;
     switch (key_code)
     {
     case 107:
@@ -76,5 +80,4 @@ void keys_action(unsigned char key_code,unsigned char num_to_out[]){
     default:
         break;
     }
-    ET1= 1;
 }
