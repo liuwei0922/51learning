@@ -46,3 +46,8 @@ void config_time_1(unsigned char ms){
 	ET1 = 1;
 	TR1 = 1;
 }
+void mod2_time_0(unsigned int baud){
+	TMOD &= 0XF0;
+	TMOD |= 0X02;
+	TH0 = 256 - (11059200 / 12)/baud ;
+}
