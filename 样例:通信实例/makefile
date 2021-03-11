@@ -1,6 +1,6 @@
 vpath %.c ../src
 vpath %.h ../include
-headers = 
+headers = nixietube.h
 mustclean = *.rel *.lst *.rst *.rsm *.sym *.asm *.map *.mem *.lk *.ihx
 targetname =URAT_communication.hex
 CC = sdcc 
