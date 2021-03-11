@@ -1,8 +1,8 @@
 vpath %.c ../src
 vpath %.h ../include
-headers = delay.h
+headers = 
 mustclean = *.rel *.lst *.rst *.rsm *.sym *.asm *.map *.mem *.lk *.ihx
-targetname =communication.hex
+targetname =URAT.hex
 CC = sdcc 
 all:$(targetname)
 
