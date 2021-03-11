@@ -57,7 +57,7 @@ void lighting(unsigned char num){
 }
 void number_for_show(unsigned long number,unsigned char number_to_out[],unsigned char length){
     signed char i;
-    unsigned char num_buff[6];
+    unsigned char num_buff[8];
     for ( i = 0; i < length ; i++)
     {
         num_buff[i] = number%10;
