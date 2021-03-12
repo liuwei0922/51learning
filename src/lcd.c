@@ -45,9 +45,9 @@ void lcd_cur(unsigned char x,unsigned char y){
     lcd_cmd(addr|0x80);
 }
 // 显示数据
-void lcd_for_show(unsigned char x,unsigned char y, unsigned char * ptrlcd){
+void lcd_for_show(unsigned char x,unsigned char y, unsigned char * ptrlcd,unsigned char length){
     lcd_cur(x,y);
-    while(*ptrlcd != 0){
+    while(length--){
         lcd_dat(*ptrlcd);
         ptrlcd ++;
     }
