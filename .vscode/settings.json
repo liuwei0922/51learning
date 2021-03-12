@@ -3,7 +3,8 @@
         "nixietube.h": "c",
         "hc595.h": "c",
         "delay.h": "c",
-        "8051.h": "c"
+        "8051.h": "c",
+        "lcd.h": "c"
     },
     "C_Cpp.errorSquiggles": "Disabled"
 }
