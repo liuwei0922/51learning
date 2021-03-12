@@ -42,7 +42,7 @@ void interrupt_time_0 () __interrupt 1 {
 // 配置定时器0
 void config_time_0(unsigned char ms){
     // 计算定时值
-    tmp = 1201000 / 12;
+    tmp = 12010000 / 12;
     tmp = (tmp * ms ) / 1000;
     tmp = 65536 -tmp;
     TH0 =(char) (tmp >>8);
